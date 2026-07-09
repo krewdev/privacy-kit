@@ -1,0 +1,191 @@
+#!/usr/bin/env bash
+# pk — Privacy Kit for macOS
+# Local audits: permissions, launch agents, listeners, tunnels, trackers, MDM.
+# https://github.com/krewdev/privacy-kit
+#
+# MIT License. Not affiliated with Apple or any monitoring vendor.
+set -euo pipefail
+
+PK_VERSION="0.1.0"
+
+# Resolve install root (supports symlinks: ~/bin/pk → …/privacy-kit/bin/pk)
+_pk_bin="${BASH_SOURCE[0]}"
+while [[ -L "$_pk_bin" ]]; do
+  _link="$(readlink "$_pk_bin")"
+  if [[ "$_link" == /* ]]; then
+    _pk_bin="$_link"
+  else
+    _pk_bin="$(cd "$(dirname "$_pk_bin")" && pwd)/$_link"
+  fi
+done
+PK_ROOT="$(cd "$(dirname "$_pk_bin")/.." && pwd)"
+unset _pk_bin _link
+
+if [[ ! -f "$PK_ROOT/lib/common.sh" ]]; then
+  echo "pk: cannot find lib/ next to install (expected $PK_ROOT/lib)" >&2
+  exit 1
+fi
+
+# shellcheck source=/dev/null
+source "$PK_ROOT/lib/common.sh"
+# shellcheck source=/dev/null
+source "$PK_ROOT/lib/tcc.sh"
+# shellcheck source=/dev/null
+source "$PK_ROOT/lib/launch.sh"
+# shellcheck source=/dev/null
+source "$PK_ROOT/lib/listeners.sh"
+# shellcheck source=/dev/null
+source "$PK_ROOT/lib/tunnels.sh"
+# shellcheck source=/dev/null
+source "$PK_ROOT/lib/trackers.sh"
+# shellcheck source=/dev/null
+source "$PK_ROOT/lib/mdm.sh"
+
+usage() {
+  cat <<EOF
+pk ${PK_VERSION} — Privacy Kit for macOS
+
+Local-only audits. No cloud, no spoofing, no network required for core checks.
+
+Usage:
+  pk audit              Full privacy report (recommended)
+  pk tcc                Screen / Accessibility / Mic / Camera grants
+  pk launch             LaunchAgents, LaunchDaemons, login-related items
+  pk listeners          Processes listening on TCP ports
+  pk tunnels            cloudflared / ngrok / similar remote tunnels
+  pk trackers           Known time-trackers / remote desktop apps
+  pk mdm                MDM, profiles, supervision, Activation Lock hints
+  pk doctor             Environment / dependency check
+  pk version            Print version
+  pk help               This help
+
+Options:
+  --json                Machine-readable output where supported (audit/tcc)
+  --no-color            Disable ANSI colors
+
+Examples:
+  pk audit
+  pk trackers
+  pk tunnels
+  pk listeners | head
+
+Config: none required. Reads system state only.
+EOF
+}
+
+main() {
+  local cmd="${1:-audit}"
+  shift || true
+
+  # global flags may appear before or after subcommand in simple form
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --json) PK_JSON=1; shift ;;
+      --no-color) PK_COLOR=0; shift ;;
+      -h|--help) usage; return 0 ;;
+      *) break ;;
+    esac
+  done
+
+  case "$cmd" in
+    help|-h|--help) usage ;;
+    version|-V|--version) echo "pk $PK_VERSION" ;;
+    doctor) cmd_doctor ;;
+    audit) cmd_audit "$@" ;;
+    tcc|permissions|perms) cmd_tcc "$@" ;;
+    launch|agents|login) cmd_launch "$@" ;;
+    listeners|ports|listen) cmd_listeners "$@" ;;
+    tunnels|tunnel) cmd_tunnels "$@" ;;
+    trackers|tracker) cmd_trackers "$@" ;;
+    mdm|profiles|enrollment) cmd_mdm "$@" ;;
+    *)
+      # allow: pk --json audit
+      if [[ "$cmd" == "--json" ]]; then
+        PK_JSON=1
+        main "${1:-audit}" "${@:2}"
+        return
+      fi
+      if [[ "$cmd" == "--no-color" ]]; then
+        PK_COLOR=0
+        main "${1:-audit}" "${@:2}"
+        return
+      fi
+      die "unknown command: $cmd (try: pk help)"
+      ;;
+  esac
+}
+
+cmd_doctor() {
+  header "Privacy Kit doctor"
+  kv "pk version" "$PK_VERSION"
+  kv "macOS" "$(sw_vers -productVersion 2>/dev/null || echo unknown)"
+  kv "arch" "$(uname -m)"
+  kv "user" "$(whoami)"
+  kv "sqlite3" "$(command -v sqlite3 || echo MISSING)"
+  kv "lsof" "$(command -v lsof || echo MISSING)"
+  kv "profiles" "$(command -v profiles || echo MISSING)"
+  kv "systemextensionsctl" "$(command -v systemextensionsctl || echo MISSING)"
+  echo
+  info "Core audits work without root. Some MDM fields need admin."
+}
+
+cmd_audit() {
+  if [[ "${PK_JSON:-0}" == "1" ]]; then
+    cmd_audit_json
+    return
+  fi
+  header "Privacy Kit audit — $(date '+%Y-%m-%d %H:%M:%S %Z')"
+  echo "Host: $(scutil --get ComputerName 2>/dev/null || hostname)  User: $(whoami)"
+  echo
+
+  section "1. MDM / device management"
+  cmd_mdm --section
+
+  section "2. Sensitive permissions (TCC)"
+  cmd_tcc --section
+
+  section "3. Known trackers / remote access apps"
+  cmd_trackers --section
+
+  section "4. Tunnels & reverse proxies"
+  cmd_tunnels --section
+
+  section "5. Network listeners (selected)"
+  cmd_listeners --section
+
+  section "6. Launch agents & daemons (non-Apple sample)"
+  cmd_launch --section
+
+  section "7. Quick hardening tips"
+  echo "  • Quit time trackers when not on a task (see hubstaff-work-shell / hs stop)"
+  echo "  • Remove unknown Login Items: System Settings → General → Login Items"
+  echo "  • Review Screen Recording: System Settings → Privacy & Security"
+  echo "  • Disable AirPlay Receiver if unused; avoid services bound to * (all interfaces)"
+  echo "  • Revoke dead Cloudflare tunnels in Zero Trust dashboard"
+  echo
+  ok "Audit complete. Local-only — nothing was sent off-machine."
+}
+
+cmd_audit_json() {
+  PK_VERSION="$PK_VERSION" python3 -c '
+import json, os, subprocess, datetime
+def sh(c):
+    return subprocess.getoutput(c)
+out = {
+  "tool": "pk",
+  "version": os.environ.get("PK_VERSION", "0.1.0"),
+  "ts": datetime.datetime.now().isoformat(),
+  "user": os.environ.get("USER"),
+  "host": sh("scutil --get ComputerName 2>/dev/null || hostname"),
+  "profiles_status": sh("profiles status 2>/dev/null"),
+  "cloudflared_running": bool(sh("pgrep -x cloudflared || true").strip()),
+  "ngrok_running": bool(sh("pgrep -x ngrok || true").strip()),
+  "hubstaff_running": bool(sh("pgrep -x Hubstaff || true").strip()),
+  "sip": sh("csrutil status 2>/dev/null").strip(),
+  "filevault": sh("fdesetup status 2>/dev/null").strip(),
+}
+print(json.dumps(out, indent=2))
+'
+}
+
+main "$@"
