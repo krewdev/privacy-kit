@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 — 2026-07-09
+
+- Clean release tarball (no Python bytecode)
+- Document Homebrew 6 tap trust
+
+
 ## 0.2.0 — 2026-07-09
 
 - **Structured `pk audit --json`** (`schema_version: 2`) via `lib/audit_json.py`

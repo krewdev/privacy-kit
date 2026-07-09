@@ -6,7 +6,7 @@
 # MIT License. Not affiliated with Apple or any monitoring vendor.
 set -euo pipefail
 
-PK_VERSION="0.2.0"
+PK_VERSION="0.2.1"
 
 # Resolve install root (supports symlinks: ~/bin/pk → …/privacy-kit/bin/pk)
 _pk_bin="${BASH_SOURCE[0]}"
