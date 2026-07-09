@@ -3,6 +3,11 @@
 [![CI](https://github.com/krewdev/privacy-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/krewdev/privacy-kit/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](#requirements)
+[![Release](https://img.shields.io/github/v/release/krewdev/privacy-kit)](https://github.com/krewdev/privacy-kit/releases)
+
+<p align="center">
+  <img src="docs/social-card.svg" alt="privacy-kit" width="640" />
+</p>
 
 **Local privacy audits for macOS** — one CLI, no cloud, no spoofing.
 
@@ -33,6 +38,16 @@ Companion: **[hubstaff-work-shell](https://github.com/krewdev/hubstaff-work-shel
 ---
 
 ## Install (macOS)
+
+### Homebrew (tap)
+
+```bash
+brew tap krewdev/tap
+brew install privacy-kit
+pk audit
+```
+
+### From source
 
 ```bash
 git clone https://github.com/krewdev/privacy-kit.git
@@ -65,13 +80,31 @@ pk tunnels            # any reverse tunnels?
 pk listeners          # what’s bound on *:port?
 pk tcc                # who has Screen Recording?
 pk mdm                # enrolled in MDM?
-pk audit --json       # short machine-readable summary
+pk audit --json       # structured JSON (schema_version 2)
 pk doctor
 ```
+
+### JSON (schema v2)
+
+```bash
+pk audit --json | jq '.summary'
+# {
+#   "mdm_profiles_present": false,
+#   "monitoring_tcc_grants": 2,
+#   "trackers_running": [],
+#   "tunnels_running": false,
+#   "open_listeners": 3,
+#   "flagged_launch_items": 5
+# }
+```
+
+Full field reference: [docs/example-audit.json](docs/example-audit.json).
 
 ---
 
 ## Example output (abbreviated)
+
+See also [docs/example-audit.txt](docs/example-audit.txt).
 
 ```text
 ══ Privacy Kit audit ══
@@ -84,7 +117,7 @@ pk doctor
 ▸ 4. Tunnels & reverse proxies
   No well-known tunnel processes running.
 ▸ 5. Network listeners
-  ollama    3113   krewdev   *:11434
+  ollama    3113   user   *:11434
 ```
 
 ---

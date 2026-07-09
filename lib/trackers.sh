@@ -66,26 +66,38 @@ cmd_trackers() {
       fi
     fi
 
-    # running?
-    if pgrep -if "$name" >/dev/null 2>&1; then
-      # reduce false positives: require path-ish match for common words
-      case "$name" in
-        Zoom)
-          pgrep -if 'zoom.us|ZoomWorkplace' >/dev/null 2>&1 && run="yes" || run="no"
-          ;;
-        OBS)
-          pgrep -if 'OBS Studio|obs-studio|OBS\.app' >/dev/null 2>&1 && run="yes" || true
-          pgrep -x obs >/dev/null 2>&1 && run="yes" || true
-          ;;
-        *)
-          run="yes"
-          ;;
-      esac
-    fi
-    # process name exact for hubstaff
-    if [[ "$name" == "Hubstaff" ]] && pgrep -x Hubstaff >/dev/null 2>&1; then
-      run="yes"
-    fi
+    # running? prefer exact process names to avoid false positives
+    case "$name" in
+      Hubstaff)
+        pgrep -x Hubstaff >/dev/null 2>&1 && run="yes"
+        ;;
+      Zoom)
+        pgrep -if 'zoom\.us|ZoomWorkplace|CptHost' >/dev/null 2>&1 && run="yes"
+        ;;
+      OBS)
+        pgrep -x obs >/dev/null 2>&1 && run="yes"
+        pgrep -if 'OBS Studio|obs-studio' >/dev/null 2>&1 && run="yes"
+        ;;
+      TeamViewer)
+        pgrep -x TeamViewer >/dev/null 2>&1 && run="yes"
+        ;;
+      AnyDesk)
+        pgrep -x AnyDesk >/dev/null 2>&1 && run="yes"
+        ;;
+      Loom)
+        pgrep -if 'Loom\.app|com\.loom' >/dev/null 2>&1 && run="yes"
+        ;;
+      "Time Doctor"|RescueTime|ActivTrak|Teramind|Veriato|InterGuard|StaffCop|RustDesk|"Chrome Remote Desktop"|LogMeIn|Splashtop|"Microsoft Remote Desktop"|"Screens Sharing")
+        # multi-word / rare: require process list hit with word boundaries via -f and full name
+        if pgrep -if "$name" >/dev/null 2>&1; then
+          # avoid matching unrelated short tokens
+          pgrep -lf "$name" 2>/dev/null | grep -qi "$name" && run="yes"
+        fi
+        ;;
+      *)
+        pgrep -x "$name" >/dev/null 2>&1 && run="yes"
+        ;;
+    esac
     if [[ "$run" == "yes" ]]; then
       running=$((running + 1))
     fi

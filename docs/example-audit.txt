@@ -1,0 +1,100 @@
+
+══ Privacy Kit audit — 2026-07-09 04:54:21 EDT ══
+Host: James’s MacBook Air  User: krewdev
+
+
+▸ 1. MDM / device management
+  Configuration profiles:
+    There are no configuration profiles installed on this system
+  No configuration profiles installed.
+
+  Managed Preferences:
+  No /Library/Managed Preferences
+
+  MDM / enrollment hints:
+  No ADE/DEP cloud config activation record (personal-style)
+  DEP nag plist present (often DEP state == 0 / disabled)
+
+  Activation / disk:
+  Find My Mac                  enabled (Activation Lock likely with Apple ID — personal, not MDM)
+  FileVault                    FileVault is Off.
+  SIP                          System Integrity Protection status: enabled.
+
+  Remote management prefs (legacy ARD):
+  com.apple.RemoteManagement prefs exist
+    {
+        "ARD_AllLocalUsers" = 1;
+        "ARD_AllLocalUsersPrivs" = 255;
+        AllowSRPForNetworkNodes = 0;
+        DisableKerberos = 0;
+        LoadRemoteManagementMenuExtra = 1;
+        VNCLegacyConnectionsEnabled = 0;
+        allowInsecureDH = 1;
+    }
+  Screen Sharing service is disabled
+
+  Common enterprise agents:
+  No common Jamf/CrowdStrike/Sentinel/Kandji paths or processes found
+
+▸ 2. Sensitive permissions (TCC)
+  User TCC (/Users/krewdev/Library/Application Support/com.apple.TCC/TCC.db):
+    Camera               /Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing allowed
+    Camera               ai.perplexity.comet                      allowed
+    Camera               com.amazon.Amazon-Chime                  allowed
+    Camera               com.obsproject.obs-studio                allowed
+    Camera               org.mozilla.firefox                      allowed
+    Camera               us.zoom.xos                              allowed
+    Microphone           ai.perplexity.comet                      allowed
+    Microphone           com.amazon.Amazon-Chime                  allowed
+    Microphone           com.apple.Safari.WebApp.08ADFB8E-EEAF-4215-8818-A326151AB8C7 allowed
+    Microphone           com.apple.Safari.WebApp.633AAC93-B98C-4C15-B44F-456C0CD80BB3 allowed
+    Microphone           com.apple.Safari.WebApp.AC44E448-E8F1-4637-BB3C-57377CEA8AA0 allowed
+    Microphone           com.apple.mobilelogic                    allowed
+    Microphone           com.google.antigravity                   allowed
+    Microphone           com.google.antigravity-ide               allowed
+    Microphone           com.loom.desktop                         allowed
+    Microphone           com.mixvibes.cyclik                      allowed
+    Microphone           com.obsproject.obs-studio                allowed
+    Microphone           com.todesktop.230313mzl4w4u92            allowed
+    Microphone           org.mozilla.firefox                      allowed
+    Microphone           us.zoom.xos                              allowed
+
+  System TCC (/Library/Application Support/com.apple.TCC/TCC.db):
+    Accessibility        com.bbilous.Mouse-Jiggler-Pro            allowed
+    Accessibility        com.bitnite.clicker                      allowed
+    Accessibility        com.netsoft.Hubstaff                     allowed
+    ⚠ monitoring-related: com.netsoft.Hubstaff → Accessibility
+    Post Events          com.bitnite.clicker                      allowed
+    Screen Recording     ai.perplexity.comet                      allowed
+    Screen Recording     com.google.Chrome                        allowed
+    Screen Recording     com.netsoft.Hubstaff                     allowed
+    ⚠ monitoring-related: com.netsoft.Hubstaff → Screen Recording
+    Screen Recording     com.obsproject.obs-studio                allowed
+    Screen Recording     us.zoom.xos                              allowed
+    Full Disk Access     com.apple.Terminal                       allowed
+    Full Disk Access     com.docker.docker                        allowed
+    Full Disk Access     com.google.antigravity                   allowed
+    Full Disk Access     com.todesktop.230313mzl4w4u92            allowed
+
+  Review Screen Recording + Accessibility carefully (screenshot / keystroke class).
+  Change: System Settings → Privacy & Security → Screen Recording / Accessibility / …
+
+▸ 3. Known trackers / remote access apps
+  NAME                   INSTALLED  RUNNING    NOTE
+  ----                   ---------  -------    ----
+  Hubstaff               yes        no         time tracking + screenshots
+
+  Installed (matched)          1
+  Running (matched)            0
+  No matched trackers/remote tools currently running.
+  Hubstaff task-scoped control: see hubstaff-work-shell (hs stop / hs start).
+
+▸ 4. Tunnels & reverse proxies
+  Processes:
+  RUNNING: clawdbot (gateway) — review if intentional
+    15500 clawdbot OSLogRateLimit=64 CLAWDBOT_SERVICE_KIND=gateway CLAWDBOT_LAUNCHD_LABEL=com.clawdbot.gateway CLAWDBOT_GATEWAY_PORT=18789
+    15501 clawdbot-gateway OSLogRateLimit=64 CLAWDBOT_SERVICE_KIND=gateway CLAWDBOT_LAUNCHD_LABEL=com.clawdbot.gateway CLAWDBOT_GATEWAY_PORT=18789
+
+  Launch configs (common paths):
+  No common tunnel configs found.
+

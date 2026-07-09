@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0b1220"/>
+      <stop offset="100%" style="stop-color:#132337"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="48" y="48" width="1184" height="544" rx="24" fill="none" stroke="#3d8bfd" stroke-width="2" opacity="0.5"/>
+  <text x="96" y="200" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="72" fill="#e8eef7" font-weight="700">privacy-kit</text>
+  <text x="96" y="280" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="32" fill="#8fb4ff">pk audit — local macOS privacy reports</text>
+  <text x="96" y="380" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="24" fill="#9aa8bc">permissions · trackers · tunnels · listeners · MDM</text>
+  <text x="96" y="480" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="22" fill="#6a7a90">MIT · no cloud · github.com/krewdev/privacy-kit</text>
+</svg>

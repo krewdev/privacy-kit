@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0 — 2026-07-09
+
+- **Structured `pk audit --json`** (`schema_version: 2`) via `lib/audit_json.py`
+  - mdm, tcc, trackers, tunnels, listeners, launch, summary flags
+- Example artifacts: `docs/example-audit.{txt,json}`, social card SVG
+- Homebrew install docs (`brew tap krewdev/tap`)
+- Private vulnerability reporting via GitHub Security Advisories
+- Fewer tracker false positives (process matching)
+
 ## 0.1.1 — 2026-07-09
 
 - CI (ShellCheck + smoke tests), Makefile, issue/PR templates

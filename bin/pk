@@ -6,7 +6,7 @@
 # MIT License. Not affiliated with Apple or any monitoring vendor.
 set -euo pipefail
 
-PK_VERSION="0.1.1"
+PK_VERSION="0.2.0"
 
 # Resolve install root (supports symlinks: ~/bin/pk → …/privacy-kit/bin/pk)
 _pk_bin="${BASH_SOURCE[0]}"
@@ -168,25 +168,14 @@ cmd_audit() {
 }
 
 cmd_audit_json() {
-  PK_VERSION="$PK_VERSION" python3 -c '
-import json, os, subprocess, datetime
-def sh(c):
-    return subprocess.getoutput(c)
-out = {
-  "tool": "pk",
-  "version": os.environ.get("PK_VERSION", "0.1.0"),
-  "ts": datetime.datetime.now().isoformat(),
-  "user": os.environ.get("USER"),
-  "host": sh("scutil --get ComputerName 2>/dev/null || hostname"),
-  "profiles_status": sh("profiles status 2>/dev/null"),
-  "cloudflared_running": bool(sh("pgrep -x cloudflared || true").strip()),
-  "ngrok_running": bool(sh("pgrep -x ngrok || true").strip()),
-  "hubstaff_running": bool(sh("pgrep -x Hubstaff || true").strip()),
-  "sip": sh("csrutil status 2>/dev/null").strip(),
-  "filevault": sh("fdesetup status 2>/dev/null").strip(),
-}
-print(json.dumps(out, indent=2))
-'
+  local py="$PK_ROOT/lib/audit_json.py"
+  if [[ ! -f "$py" ]]; then
+    die "missing $py"
+  fi
+  if ! have python3; then
+    die "python3 required for --json"
+  fi
+  PK_VERSION="$PK_VERSION" python3 "$py"
 }
 
 main "$@"

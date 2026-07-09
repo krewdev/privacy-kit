@@ -1,0 +1,545 @@
+{
+  "tool": "pk",
+  "version": "0.2.0",
+  "schema_version": 2,
+  "ts": "2026-07-09T08:54:21.214407+00:00",
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "macos": "26.3",
+    "user": "user",
+    "host": "MacBook-Example"
+  },
+  "mdm": {
+    "profiles_status": "There are no configuration profiles installed on this system",
+    "no_configuration_profiles": true,
+    "managed_preferences_dir": false,
+    "find_my_mac": true,
+    "filevault": "FileVault is Off.",
+    "sip": "System Integrity Protection status: enabled.",
+    "enterprise_paths": []
+  },
+  "tcc": {
+    "user": {
+      "path": "/Users/krewdev/Library/Application Support/com.apple.TCC/TCC.db",
+      "readable": true,
+      "entries": [
+        {
+          "service": "kTCCServiceCamera",
+          "service_label": "camera",
+          "client": "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceCamera",
+          "service_label": "camera",
+          "client": "ai.perplexity.comet",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceCamera",
+          "service_label": "camera",
+          "client": "com.amazon.Amazon-Chime",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceCamera",
+          "service_label": "camera",
+          "client": "com.obsproject.obs-studio",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceCamera",
+          "service_label": "camera",
+          "client": "org.mozilla.firefox",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceCamera",
+          "service_label": "camera",
+          "client": "us.zoom.xos",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "ai.perplexity.comet",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.amazon.Amazon-Chime",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.apple.Safari.WebApp.08ADFB8E-EEAF-4215-8818-A326151AB8C7",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.apple.Safari.WebApp.633AAC93-B98C-4C15-B44F-456C0CD80BB3",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.apple.Safari.WebApp.AC44E448-E8F1-4637-BB3C-57377CEA8AA0",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.apple.mobilelogic",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.google.antigravity",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.google.antigravity-ide",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.loom.desktop",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.mixvibes.cyclik",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.obsproject.obs-studio",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "com.todesktop.230313mzl4w4u92",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "org.mozilla.firefox",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceMicrophone",
+          "service_label": "microphone",
+          "client": "us.zoom.xos",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        }
+      ]
+    },
+    "system": {
+      "path": "/Library/Application Support/com.apple.TCC/TCC.db",
+      "readable": true,
+      "entries": [
+        {
+          "service": "kTCCServiceAccessibility",
+          "service_label": "accessibility",
+          "client": "com.bbilous.Mouse-Jiggler-Pro",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceAccessibility",
+          "service_label": "accessibility",
+          "client": "com.bitnite.clicker",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceAccessibility",
+          "service_label": "accessibility",
+          "client": "com.netsoft.Hubstaff",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": true
+        },
+        {
+          "service": "kTCCServicePostEvent",
+          "service_label": "post_events",
+          "client": "com.bitnite.clicker",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceScreenCapture",
+          "service_label": "screen_recording",
+          "client": "ai.perplexity.comet",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceScreenCapture",
+          "service_label": "screen_recording",
+          "client": "com.google.Chrome",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceScreenCapture",
+          "service_label": "screen_recording",
+          "client": "com.netsoft.Hubstaff",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": true
+        },
+        {
+          "service": "kTCCServiceScreenCapture",
+          "service_label": "screen_recording",
+          "client": "com.obsproject.obs-studio",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceScreenCapture",
+          "service_label": "screen_recording",
+          "client": "us.zoom.xos",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceSystemPolicyAllFiles",
+          "service_label": "full_disk_access",
+          "client": "com.apple.Terminal",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceSystemPolicyAllFiles",
+          "service_label": "full_disk_access",
+          "client": "com.docker.docker",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceSystemPolicyAllFiles",
+          "service_label": "full_disk_access",
+          "client": "com.google.antigravity",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        },
+        {
+          "service": "kTCCServiceSystemPolicyAllFiles",
+          "service_label": "full_disk_access",
+          "client": "com.todesktop.230313mzl4w4u92",
+          "auth_value": 2,
+          "auth": "allowed",
+          "monitoring_hint": false
+        }
+      ]
+    }
+  },
+  "trackers": [
+    {
+      "name": "Hubstaff",
+      "installed": true,
+      "running": false
+    }
+  ],
+  "tunnels": {
+    "processes": {
+      "cloudflared": false,
+      "ngrok": false,
+      "frpc": false,
+      "clawdbot": true
+    },
+    "configs_present": [],
+    "any_running": true
+  },
+  "listeners": [
+    {
+      "command": "rapportd",
+      "pid": "462",
+      "user": "krewdev",
+      "address": "*:57108",
+      "all_interfaces": true
+    },
+    {
+      "command": "rapportd",
+      "pid": "462",
+      "user": "krewdev",
+      "address": "*:57108",
+      "all_interfaces": true
+    },
+    {
+      "command": "Electron",
+      "pid": "498",
+      "user": "krewdev",
+      "address": "127.0.0.1:49419",
+      "all_interfaces": false
+    },
+    {
+      "command": "Electron",
+      "pid": "498",
+      "user": "krewdev",
+      "address": "127.0.0.1:49420",
+      "all_interfaces": false
+    },
+    {
+      "command": "ControlCe",
+      "pid": "501",
+      "user": "krewdev",
+      "address": "*:7000",
+      "all_interfaces": true
+    },
+    {
+      "command": "ControlCe",
+      "pid": "501",
+      "user": "krewdev",
+      "address": "*:7000",
+      "all_interfaces": true
+    },
+    {
+      "command": "ControlCe",
+      "pid": "501",
+      "user": "krewdev",
+      "address": "*:5000",
+      "all_interfaces": true
+    },
+    {
+      "command": "ControlCe",
+      "pid": "501",
+      "user": "krewdev",
+      "address": "*:5000",
+      "all_interfaces": true
+    },
+    {
+      "command": "Google",
+      "pid": "860",
+      "user": "krewdev",
+      "address": "[::1]:7679",
+      "all_interfaces": false
+    },
+    {
+      "command": "language_",
+      "pid": "961",
+      "user": "krewdev",
+      "address": "127.0.0.1:49475",
+      "all_interfaces": false
+    },
+    {
+      "command": "language_",
+      "pid": "961",
+      "user": "krewdev",
+      "address": "127.0.0.1:49476",
+      "all_interfaces": false
+    },
+    {
+      "command": "Antigravi",
+      "pid": "963",
+      "user": "krewdev",
+      "address": "127.0.0.1:49511",
+      "all_interfaces": false
+    },
+    {
+      "command": "Antigravi",
+      "pid": "964",
+      "user": "krewdev",
+      "address": "127.0.0.1:49528",
+      "all_interfaces": false
+    },
+    {
+      "command": "Antigravi",
+      "pid": "965",
+      "user": "krewdev",
+      "address": "127.0.0.1:49506",
+      "all_interfaces": false
+    },
+    {
+      "command": "language_",
+      "pid": "1078",
+      "user": "krewdev",
+      "address": "127.0.0.1:49532",
+      "all_interfaces": false
+    }
+  ],
+  "launch": {
+    "system_daemons": [
+      {
+        "name": "com.docker.socket.plist",
+        "flagged": true,
+        "path": "/Library/LaunchDaemons/com.docker.socket.plist"
+      },
+      {
+        "name": "com.docker.vmnetd.plist",
+        "flagged": true,
+        "path": "/Library/LaunchDaemons/com.docker.vmnetd.plist"
+      },
+      {
+        "name": "com.google.GoogleUpdater.wake.system.plist",
+        "flagged": false,
+        "path": "/Library/LaunchDaemons/com.google.GoogleUpdater.wake.system.plist"
+      },
+      {
+        "name": "com.google.keystone.daemon.plist",
+        "flagged": true,
+        "path": "/Library/LaunchDaemons/com.google.keystone.daemon.plist"
+      },
+      {
+        "name": "com.muse.authservice.plist",
+        "flagged": false,
+        "path": "/Library/LaunchDaemons/com.muse.authservice.plist"
+      },
+      {
+        "name": "com.nordvpn.macos.helper.plist",
+        "flagged": true,
+        "path": "/Library/LaunchDaemons/com.nordvpn.macos.helper.plist"
+      },
+      {
+        "name": "us.zoom.ZoomDaemon.plist",
+        "flagged": true,
+        "path": "/Library/LaunchDaemons/us.zoom.ZoomDaemon.plist"
+      }
+    ],
+    "system_agents": [
+      {
+        "name": "com.google.keystone.agent.plist",
+        "flagged": true,
+        "path": "/Library/LaunchAgents/com.google.keystone.agent.plist"
+      },
+      {
+        "name": "com.google.keystone.xpcservice.plist",
+        "flagged": true,
+        "path": "/Library/LaunchAgents/com.google.keystone.xpcservice.plist"
+      },
+      {
+        "name": "us.zoom.updater.login.check.plist",
+        "flagged": true,
+        "path": "/Library/LaunchAgents/us.zoom.updater.login.check.plist"
+      },
+      {
+        "name": "us.zoom.updater.plist",
+        "flagged": true,
+        "path": "/Library/LaunchAgents/us.zoom.updater.plist"
+      }
+    ],
+    "user_agents": [
+      {
+        "name": "ai.perplexity.CometUpdater.wake.plist",
+        "flagged": false,
+        "path": "/Users/krewdev/Library/LaunchAgents/ai.perplexity.CometUpdater.wake.plist"
+      },
+      {
+        "name": "ai.perplexity.keystone.agent.plist",
+        "flagged": true,
+        "path": "/Users/krewdev/Library/LaunchAgents/ai.perplexity.keystone.agent.plist"
+      },
+      {
+        "name": "ai.perplexity.keystone.xpcservice.plist",
+        "flagged": true,
+        "path": "/Users/krewdev/Library/LaunchAgents/ai.perplexity.keystone.xpcservice.plist"
+      },
+      {
+        "name": "com.clawdbot.gateway.plist",
+        "flagged": true,
+        "path": "/Users/krewdev/Library/LaunchAgents/com.clawdbot.gateway.plist"
+      },
+      {
+        "name": "com.google.GoogleUpdater.wake.plist",
+        "flagged": false,
+        "path": "/Users/krewdev/Library/LaunchAgents/com.google.GoogleUpdater.wake.plist"
+      },
+      {
+        "name": "com.google.keystone.agent.plist",
+        "flagged": true,
+        "path": "/Users/krewdev/Library/LaunchAgents/com.google.keystone.agent.plist"
+      },
+      {
+        "name": "com.google.keystone.xpcservice.plist",
+        "flagged": true,
+        "path": "/Users/krewdev/Library/LaunchAgents/com.google.keystone.xpcservice.plist"
+      },
+      {
+        "name": "homebrew.mxcl.redis.plist",
+        "flagged": true,
+        "path": "/Users/krewdev/Library/LaunchAgents/homebrew.mxcl.redis.plist"
+      }
+    ],
+    "login_items": [
+      "Comet",
+      "ProtonVPN",
+      "NordVPN",
+      "Docker Desktop",
+      "Google Drive",
+      "Loom",
+      "Macintosh HD"
+    ]
+  },
+  "summary": {
+    "mdm_profiles_present": false,
+    "monitoring_tcc_grants": 2,
+    "trackers_running": [],
+    "tunnels_running": true,
+    "open_listeners": 7,
+    "flagged_launch_items": 15
+  },
+  "_note": "truncated public example"
+}
