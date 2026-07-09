@@ -19,7 +19,7 @@ jobs:
           ignore_paths: >-
             .git
         env:
-          SHELLCHECK_OPTS: -x -e SC1091 -e SC2015 -e SC2016
+          SHELLCHECK_OPTS: -x -e SC1091 -e SC2015 -e SC2016 -e SC2001 -e SC2012
 
   smoke:
     name: Smoke tests

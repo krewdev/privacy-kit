@@ -80,8 +80,8 @@ main() {
   # global flags may appear before or after subcommand in simple form
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      --json) PK_JSON=1; shift ;;
-      --no-color) PK_COLOR=0; shift ;;
+      --json) PK_JSON=1; export PK_JSON; shift ;;
+      --no-color) PK_COLOR=0; export PK_COLOR; shift ;;
       -h|--help) usage; return 0 ;;
       *) break ;;
     esac
@@ -89,12 +89,12 @@ main() {
 
   # allow: pk --json audit / pk --no-color audit
   if [[ "$cmd" == "--json" ]]; then
-    PK_JSON=1
+    PK_JSON=1; export PK_JSON
     main "${1:-audit}" "${@:2}"
     return
   fi
   if [[ "$cmd" == "--no-color" ]]; then
-    PK_COLOR=0
+    PK_COLOR=0; export PK_COLOR
     main "${1:-audit}" "${@:2}"
     return
   fi
