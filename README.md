@@ -43,6 +43,7 @@ Companion: **[hubstaff-work-shell](https://github.com/krewdev/hubstaff-work-shel
 
 ```bash
 brew tap krewdev/tap
+brew trust krewdev/tap  # Homebrew 6+ third-party taps
 brew install privacy-kit
 pk audit
 ```
