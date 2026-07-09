@@ -6,7 +6,7 @@
 # MIT License. Not affiliated with Apple or any monitoring vendor.
 set -euo pipefail
 
-PK_VERSION="0.1.0"
+PK_VERSION="0.1.1"
 
 # Resolve install root (supports symlinks: ~/bin/pk → …/privacy-kit/bin/pk)
 _pk_bin="${BASH_SOURCE[0]}"
@@ -87,6 +87,20 @@ main() {
     esac
   done
 
+  # allow: pk --json audit / pk --no-color audit
+  if [[ "$cmd" == "--json" ]]; then
+    PK_JSON=1
+    main "${1:-audit}" "${@:2}"
+    return
+  fi
+  if [[ "$cmd" == "--no-color" ]]; then
+    PK_COLOR=0
+    main "${1:-audit}" "${@:2}"
+    return
+  fi
+
+  pk_init_colors
+
   case "$cmd" in
     help|-h|--help) usage ;;
     version|-V|--version) echo "pk $PK_VERSION" ;;
@@ -98,20 +112,7 @@ main() {
     tunnels|tunnel) cmd_tunnels "$@" ;;
     trackers|tracker) cmd_trackers "$@" ;;
     mdm|profiles|enrollment) cmd_mdm "$@" ;;
-    *)
-      # allow: pk --json audit
-      if [[ "$cmd" == "--json" ]]; then
-        PK_JSON=1
-        main "${1:-audit}" "${@:2}"
-        return
-      fi
-      if [[ "$cmd" == "--no-color" ]]; then
-        PK_COLOR=0
-        main "${1:-audit}" "${@:2}"
-        return
-      fi
-      die "unknown command: $cmd (try: pk help)"
-      ;;
+    *) die "unknown command: $cmd (try: pk help)" ;;
   esac
 }
 

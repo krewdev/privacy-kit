@@ -53,9 +53,16 @@ cmd_trackers() {
       if mdfind "kMDItemDisplayName == '*${name}*'c" 2>/dev/null | head -1 | grep -q .; then
         inst="yes"
         installed=$((installed + 1))
-      elif ls /Applications 2>/dev/null | grep -qi "$name"; then
-        inst="yes"
-        installed=$((installed + 1))
+      else
+        local app
+        for app in /Applications/*; do
+          [[ -e "$app" ]] || continue
+          if [[ "$(basename "$app")" == *"$name"* ]]; then
+            inst="yes"
+            installed=$((installed + 1))
+            break
+          fi
+        done
       fi
     fi
 

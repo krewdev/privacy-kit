@@ -19,14 +19,6 @@ cmd_tunnels() {
     fi
   }
 
-  _check_plist() {
-    local path="$1"
-    if [[ -e "$path" ]]; then
-      found=1
-      warn "  PLIST: $path"
-    fi
-  }
-
   echo "  Processes:"
   _check_proc "cloudflared" "Cloudflare Tunnel — can expose local services"
   _check_proc "ngrok" "ngrok tunnel"

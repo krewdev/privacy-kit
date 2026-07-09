@@ -1,5 +1,9 @@
 # privacy-kit
 
+[![CI](https://github.com/krewdev/privacy-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/krewdev/privacy-kit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](#requirements)
+
 **Local privacy audits for macOS** — one CLI, no cloud, no spoofing.
 
 `pk` answers: *What on this Mac can watch me, listen, tunnel out, or be managed by an org?*
@@ -24,7 +28,7 @@ It reads system state only (TCC databases when readable, launch agents, listener
 | `pk mdm` | Profiles, Managed Preferences, Find My / FileVault / SIP, enterprise agents |
 | `pk doctor` | Dependency check |
 
-Companion project for task-scoped Hubstaff control: [hubstaff-work-shell](https://github.com/krewdev/hubstaff-work-shell) (`hs stop` / `hs start`).
+Companion: **[hubstaff-work-shell](https://github.com/krewdev/hubstaff-work-shell)** — start real Hubstaff only on a task; `hs stop` quits collection.
 
 ---
 
@@ -121,10 +125,19 @@ privacy-kit/
 ## Development
 
 ```bash
+make check          # shellcheck + smoke tests
+make smoke
 ./bin/pk doctor
 ./bin/pk audit
-shellcheck bin/pk lib/*.sh   # optional
 ```
+
+| Target | What it runs |
+|--------|----------------|
+| `make check` | ShellCheck + smoke tests |
+| `make smoke` | CLI surface without needing root |
+| `make install` | Local install via `install.sh` |
+
+CI runs the same checks on every push/PR ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
 
 Bump `PK_VERSION` in `bin/pk` for releases.
 

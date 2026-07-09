@@ -63,8 +63,7 @@ cmd_tcc() {
     header "TCC permissions"
   fi
 
-  local any=0
-  local line service client auth label pretty
+  local service client auth label pretty
   local high_risk=0
 
   echo "  User TCC ($user_db):"
@@ -74,7 +73,6 @@ cmd_tcc() {
     else
       while IFS='|' read -r service client auth; do
         [[ -z "$service" ]] && continue
-        any=1
         label=$(_tcc_label "$auth")
         pretty=$(_tcc_pretty_service "$service")
         printf '    %-20s %-40s %s\n' "$pretty" "$client" "$label"
@@ -97,7 +95,6 @@ cmd_tcc() {
     else
       while IFS='|' read -r service client auth; do
         [[ -z "$service" ]] && continue
-        any=1
         label=$(_tcc_label "$auth")
         pretty=$(_tcc_pretty_service "$service")
         printf '    %-20s %-40s %s\n' "$pretty" "$client" "$label"
